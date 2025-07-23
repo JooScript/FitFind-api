@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace ECommerce.Context;
+namespace ECommerce.Da;
 
 public partial class ECommerceContext : IdentityDbContext<AppUser>
 {
@@ -264,7 +264,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.Id).HasName("PK_tb_campaign_products");
 
-            entity.ToTable("TbCampaignProductMapping", "marketing");
+            entity.ToTable("TbCampaignProductMappings", "marketing");
 
             entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.CampaignId).HasColumnName("CampaignId");
@@ -274,11 +274,11 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
 
         modelBuilder.Entity<TbCartItem>(entity =>
         {
-            entity.HasKey(e => e.ItemId).HasName("PK_Cart_Items");
+            entity.HasKey(e => e.Id).HasName("PK_Cart_Items");
 
             entity.ToTable("TbCartItems", "customers");
 
-            entity.Property(e => e.ItemId).HasColumnName("ItemId");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.AddedAt)
                 .HasDefaultValueSql("(sysdatetimeoffset())")
                 .HasColumnName("AddedAt");
@@ -286,6 +286,8 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
             entity.Property(e => e.ProductId).HasColumnName("ProductId");
             entity.Property(e => e.Quantity).HasColumnName("Quantity");
             entity.Property(e => e.VariationId).HasColumnName("VariationId");
+
+            entity.Property(e => e.IsDeleted).HasColumnName("IsDeleted").HasDefaultValue(false);
 
             entity.HasOne(d => d.Cart).WithMany(p => p.TbCartItems)
                 .HasForeignKey(d => d.CartId)
@@ -326,6 +328,11 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
             entity.Property(e => e.IsDeleted)
                 .HasColumnName("IsDeleted")
                 .HasDefaultValue(false);
+
+            entity.HasOne(d => d.User)
+               .WithMany(p => p.TbCategories)
+               .HasForeignKey(d => d.ModifiedBy)
+               .HasConstraintName("FK_Categories_User");
 
             entity.HasOne(d => d.ParentCategory).WithMany(p => p.InverseParentCategory)
                 .HasForeignKey(d => d.ParentCategoryId)
@@ -402,19 +409,21 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
 
         modelBuilder.Entity<TbDiscountProductMapping>(entity =>
         {
-            entity.HasKey(e => e.MapId).HasName("PK_tb_discount_products");
+            entity.HasKey(e => e.Id).HasName("PK_tb_discount_products");
 
-            entity.ToTable("tb_discount_product_mapping", "marketing");
+            entity.ToTable("TbDiscountProductMappings", "marketing");
 
             entity.HasIndex(e => e.DiscountId, "IX_tb_discount_product_mapping_discount_id");
 
             entity.HasIndex(e => e.ProductId, "IX_tb_discount_product_mapping_product_id");
 
-            entity.Property(e => e.MapId).HasColumnName("map_id");
+            entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.DiscountId).HasColumnName("discount_id");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
+            entity.Property(e => e.IsDeleted).HasColumnName("IsDeleted").HasDefaultValue(false);
 
-            entity.HasOne(d => d.Discount).WithMany(p => p.TbDiscountProductMappings)
+            entity.HasOne(d => d.Discount)
+                .WithMany(p => p.TbDiscountProductMappings)
                 .HasForeignKey(d => d.DiscountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__discount___disco__2739D489");
@@ -494,7 +503,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.Id).HasName("PK__invoices__F58DFD49D1BB3566");
 
-            entity.ToTable("tb_invoices", "orders");
+            entity.ToTable("TbInvoices", "orders");
 
             entity.HasIndex(e => e.InvoiceNumber, "UQ__invoices__8081A63AF3DA1EA1").IsUnique();
 
@@ -946,7 +955,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.Id).HasName("PK_tb_product_translations");
 
-            entity.ToTable("tb_product_translation_mapping", "products");
+            entity.ToTable("TbProductTranslationMappings", "products");
 
             entity.HasIndex(e => e.LanguageId, "IX_tb_product_translation_mapping_language_id");
 
@@ -1012,7 +1021,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.Id);
 
-            entity.ToTable("TbSeoMata", "products");
+            entity.ToTable("TbSeoMeta", "products");
 
             entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.CanonicalUrl)
@@ -1282,7 +1291,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.Id).HasName("PK__user_act__482FBD630BD37819");
 
-            entity.ToTable("TbUserActivity", "core");
+            entity.ToTable("TbUserActivities", "core");
 
             entity.Property(e => e.Id).HasColumnName("Id");
             entity.Property(e => e.Action)
@@ -1344,7 +1353,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.Id).HasName("PK_tb_variation_attributes");
 
-            entity.ToTable("tb_variation_attribute_mapping", "products");
+            entity.ToTable("TbVariationAttributeMappings", "products");
 
             entity.HasIndex(e => e.AttributeId, "IX_tb_variation_attribute_mapping_attribute_id");
 
@@ -1423,7 +1432,7 @@ public partial class ECommerceContext : IdentityDbContext<AppUser>
 
             entity.HasOne(d => d.Wishlist).WithMany(p => p.TbWishlistItems)
                 .HasForeignKey(d => d.WishlistId)
-                .HasConstraintName("FK__wishlist___wishl__3F115E1A");
+                .HasConstraintName("FK_WishlistItems_Wishlist");
         });
 
         OnModelCreatingPartial(modelBuilder);
