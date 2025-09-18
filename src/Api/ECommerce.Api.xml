@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ECommerce.Api</name>
+    </assembly>
+    <members>
+        <member name="T:ECommerce.Api.Constants.RateLimitingPolicies">
+            <summary>
+            Contains constants for rate limiting policy names used throughout the application.
+            These policies define different rate limiting strategies for API endpoints.
+            </summary>
+        </member>
+        <member name="F:ECommerce.Api.Constants.RateLimitingPolicies.FixedWindow">
+            <summary>
+            Fixed window rate limiting policy.
+            This policy allows a fixed number of requests per specified time window.
+            </summary>
+            <example>
+            Configuration might allow 100 requests per minute using this policy.
+            </example>
+        </member>
+        <member name="F:ECommerce.Api.Constants.RateLimitingPolicies.SlidingWindow">
+            <summary>
+            Sliding window rate limiting policy.
+            This policy allows a fixed number of requests per time window, but the window
+            slides continuously rather than resetting at fixed intervals. This provides
+            smoother rate limiting compared to fixed window.
+            </summary>
+            <example>
+            Configuration might allow 100 requests per minute with a sliding window,
+            where requests are counted in overlapping time segments.
+            </example>
+        </member>
+        <member name="F:ECommerce.Api.Constants.RateLimitingPolicies.TokenBucket">
+            <summary>
+            Token bucket rate limiting policy.
+            This policy allows bursts of requests up to a maximum capacity while maintaining
+            a steady average rate over time.
+            </summary>
+        </member>
+        <member name="F:ECommerce.Api.Constants.RateLimitingPolicies.Concurrency">
+            <summary>
+            Concurrency rate limiting policy.
+            This policy limits the number of simultaneous requests rather than requests per time period.
+            </summary>
+        </member>
+        <member name="T:ECommerce.Api.Controllers.Auth.AuthController">
+            <summary>
+            Provides authentication and authorization endpoints including
+            user registration, login, logout, token refresh, email confirmation,
+            password reset, and two-factor authentication.
+            </summary>
+            <remarks>
+            This controller manages authentication flows using JWT access tokens
+            and refresh tokens stored in cookies.  
+            Access tokens are short-lived, while refresh tokens are long-lived
+            and are persisted server-side to allow rotation and invalidation.
+            </remarks>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.#ctor(ECommerce.Bl.Contracts.Auth.ITokenService,ECommerce.Bl.Contracts.Auth.IUserServiceQry,ECommerce.Bl.Contracts.Auth.IUserServiceCmd,ECommerce.Bl.Contracts.Auth.IRefreshTokens)">
+            <summary>
+            Provides authentication and authorization endpoints including
+            user registration, login, logout, token refresh, email confirmation,
+            password reset, and two-factor authentication.
+            </summary>
+            <remarks>
+            This controller manages authentication flows using JWT access tokens
+            and refresh tokens stored in cookies.  
+            Access tokens are short-lived, while refresh tokens are long-lived
+            and are persisted server-side to allow rotation and invalidation.
+            </remarks>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.Register(ECommerce.Bl.Dtos.User.UserDto)">
+            <summary>
+            Registers a new user.
+            </summary>
+            <param name="request">User registration data.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 with success message if registration succeeds.  
+            - 400 with validation or business errors if registration fails.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.Login(ECommerce.Bl.Dtos.User.LoginDto)">
+            <summary>
+            Authenticates a user and issues access and refresh tokens.
+            </summary>
+            <param name="request">Login credentials (email, password).</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 with access and refresh tokens if login succeeds.  
+            - 200 with <c>Requires2FA=true</c> if two-factor authentication is required.  
+            - 401 with error messages if login fails.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.LoginWith2FA(ECommerce.Bl.Dtos.User.TwoFactorDto)">
+            <summary>
+            Completes login using two-factor authentication (2FA).
+            </summary>
+            <param name="dto">Two-factor authentication data (email and verification code).</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 with access and refresh tokens if verification succeeds.  
+            - 401 with errors if verification fails.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.ConfirmEmail(System.Guid,System.String)">
+            <summary>
+            Confirms a user's email address using a token sent via email.
+            </summary>
+            <param name="userId">The unique identifier of the user.</param>
+            <param name="token">The email confirmation token.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 if email confirmation succeeds.  
+            - 400 if confirmation fails.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.ForgotPassword(ECommerce.Bl.Dtos.User.ForgotPasswordDto)">
+            <summary>
+            Sends a password reset link to the user's email.
+            </summary>
+            <param name="dto">Data containing the user's email address.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 if reset link is sent successfully.  
+            - 400 if operation fails.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.ResetPassword(ECommerce.Bl.Dtos.User.ResetPasswordDto)">
+            <summary>
+            Resets a user's password using a valid reset token.
+            </summary>
+            <param name="dto">Password reset data including email, token, and new password.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 if password is reset successfully.  
+            - 400 if reset fails.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.Logout">
+            <summary>
+            Logs the current user out and clears authentication cookies.
+            </summary>
+            <returns>200 with success message.</returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.RefreshAccessToken">
+            <summary>
+            Refreshes the access token using the refresh token stored in cookies.
+            </summary>
+            <remarks>
+            This endpoint is typically used by clients when the access token
+            expires. The refresh token must be valid, active, and not expired.  
+            A new short-lived access token is returned and set in cookies.
+            </remarks>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 with new access token if refresh token is valid.  
+            - 401 if refresh token is invalid or expired.  
+            </returns>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.Refresh">
+            <summary>
+            Issues a new refresh token, replacing the old one.
+            </summary>
+            <remarks>
+            Refresh token rotation helps reduce the impact of token theft.
+            A new refresh token is generated and stored, while the old one
+            becomes invalid.
+            </remarks>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>  
+            - 200 with new refresh token if the old one is valid.  
+            - 401 if old refresh token is invalid or expired.  
+            </returns>
+        </member>
+        <member name="T:ECommerce.Api.Controllers.Business.ProductController">
+            <summary>
+            API controller for managing product operations.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.#ctor(MediatR.IMediator)">
+            <summary>
+            API controller for managing product operations.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.GetById(System.Guid)">
+            <summary>
+            Retrieves a product by its unique identifier.
+            </summary>
+            <param name="id">The GUID of the product to retrieve.</param>
+            <returns>
+            Returns the product if found, otherwise returns NotFound.
+            </returns>
+            <response code="200">Returns the requested product</response>
+            <response code="400">If the request is invalid</response>
+            <response code="404">If the product is not found</response>
+            <response code="500">If there was a server error</response>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.Add(ECommerce.Bl.Dtos.Business.ProductDto)">
+            <summary>
+            Adds a new product to the system.
+            </summary>
+            <param name="newProduct">The product data to add.</param>
+            <returns>
+            Returns the created product with its new ID and a 201 Created response.
+            </returns>
+            <response code="201">Returns the newly created product</response>
+            <response code="400">If the product data is invalid</response>
+            <response code="500">If there was a server error</response>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.Update(System.Guid,ECommerce.Bl.Dtos.Business.ProductDto)">
+            <summary>
+            Updates an existing product.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Gets a paginated list of all products.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.IsExists(System.Guid)">
+            <summary>
+            Checks if a product exists.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.GetCount">
+            <summary>
+            Gets the total count of products.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.ProductController.Delete(System.Guid)">
+            <summary>
+            Deletes a product.
+            </summary>
+        </member>
+        <member name="T:ECommerce.Api.Controllers.Business.SupportTicketController">
+            <summary>
+            API controller for managing Support Ticket operations.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.#ctor(MediatR.IMediator)">
+            <summary>
+            API controller for managing Support Ticket operations.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.GetById(System.Guid)">
+            <summary>
+            Retrieves a Support Ticket by its unique identifier.
+            </summary>
+            <param name="id">The GUID of the Support Ticket to retrieve.</param>
+            <returns>
+            Returns the Support Ticket if found, otherwise returns NotFound.
+            </returns>
+            <response code="200">Returns the requested Support Ticket</response>
+            <response code="400">If the request is invalid</response>
+            <response code="404">If the Support Ticket is not found</response>
+            <response code="500">If there was a server error</response>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.Add(ECommerce.Bl.Dtos.Business.SupportTicketDto)">
+            <summary>
+            Adds a new Support Ticket to the system.
+            </summary>
+            <param name="newSupportTicket">The Support Ticket data to add.</param>
+            <returns>
+            Returns the created Support Ticket with its new ID and a 201 Created response.
+            </returns>
+            <response code="201">Returns the newly created Support Ticket</response>
+            <response code="400">If the Support Ticket data is invalid</response>
+            <response code="500">If there was a server error</response>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.Update(System.Guid,ECommerce.Bl.Dtos.Business.SupportTicketDto)">
+            <summary>
+            Updates an existing Support Ticket.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Gets a paginated list of all Support Tickets.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.IsExists(System.Guid)">
+            <summary>
+            Checks if a Support Ticket exists.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.GetCount">
+            <summary>
+            Gets the total count of Support Tickets.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Controllers.Business.SupportTicketController.Delete(System.Guid)">
+            <summary>
+            Deletes a Support Ticket.
+            </summary>
+        </member>
+        <member name="T:ECommerce.Api.Extentions.RateLimitingExtensions">
+            <summary>
+            Provides extension methods for configuring rate limiting policies in the application.
+            </summary>
+        </member>
+        <member name="M:ECommerce.Api.Extentions.RateLimitingExtensions.AddRateLimiters(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds and configures multiple rate limiting policies to the service collection.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add the rate limiter to.</param>
+            <returns>The same service collection so that multiple calls can be chained.</returns>
+            <remarks>
+            Configures four different rate limiting strategies:
+            <list type="bullet">
+            <item><description><see cref="F:ECommerce.Api.Constants.RateLimitingPolicies.FixedWindow"/>: Fixed window policy (5 requests per 5 seconds)</description></item>
+            <item><description><see cref="F:ECommerce.Api.Constants.RateLimitingPolicies.SlidingWindow"/>: Sliding window policy (4 requests per 10 seconds with 3 segments)</description></item>
+            <item><description><see cref="F:ECommerce.Api.Constants.RateLimitingPolicies.Concurrency"/>: Concurrency policy (5 simultaneous requests)</description></item>
+            <item><description><see cref="F:ECommerce.Api.Constants.RateLimitingPolicies.TokenBucket"/>: Token bucket policy (10 token limit, 5 tokens replenished every 10 seconds)</description></item>
+            </list>
+            All policies return HTTP 429 Too Many Requests when the limit is exceeded.
+            </remarks>
+            <example>
+            Usage in Program.cs:
+            <code>
+            builder.Services.AddRateLimiters();
+            </code>
+            </example>
+        </member>
+        <member name="T:ECommerce.Api.Middlewares.ErrorHandlingMiddleware">
+            <summary>
+            Middleware for handling exceptions globally within the application.
+            Converts exceptions into standardized <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> responses
+            according to RFC 7807.
+            </summary>
+            <param name="logger">The logger used for writing exception details.</param>
+        </member>
+        <member name="M:ECommerce.Api.Middlewares.ErrorHandlingMiddleware.#ctor(Microsoft.Extensions.Logging.ILogger{ECommerce.Api.Middlewares.ErrorHandlingMiddleware})">
+            <summary>
+            Middleware for handling exceptions globally within the application.
+            Converts exceptions into standardized <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> responses
+            according to RFC 7807.
+            </summary>
+            <param name="logger">The logger used for writing exception details.</param>
+        </member>
+        <member name="M:ECommerce.Api.Middlewares.ErrorHandlingMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            Invokes the middleware to process the current HTTP request and handle any unhandled exceptions.
+            </summary>
+            <param name="context">The current <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/>.</param>
+            <param name="next">The next <see cref="T:Microsoft.AspNetCore.Http.RequestDelegate"/> in the pipeline.</param>
+        </member>
+        <member name="M:ECommerce.Api.Middlewares.ErrorHandlingMiddleware.WriteProblemDetailsAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Mvc.ProblemDetails,System.Net.HttpStatusCode)">
+            <summary>
+            Writes a <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> object as a JSON response to the client.
+            </summary>
+            <param name="context">The current <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/>.</param>
+            <param name="problemDetails">The <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> to return.</param>
+            <param name="code">The HTTP status code for the response.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\Api\Middlewares\ErrorHandlingMiddleware.cs" Link="Middlewares\ErrorHandlingMiddleware.cs" />
+	  <Compile Include="..\Api\Middlewares\EventsSubscriptionMiddleware.cs" Link="Middlewares\EventsSubscriptionMiddleware.cs" />
+	  <Compile Include="..\Api\Services\General\ContextConfig.cs" Link="Services\General\ContextConfig.cs" />
+	  <Compile Include="..\Api\Services\General\RegisterHelper.cs" Link="Services\General\RegisterHelper.cs" />
+	  <Compile Include="..\Api\Services\General\UserService.cs" Link="Services\General\UserService.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.18" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+		<PackageReference Include="Serilog.Sinks.MSSqlServer" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BL\ECommerce.Bl.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Middlewares\" />
+	</ItemGroup>
+
+</Project>
