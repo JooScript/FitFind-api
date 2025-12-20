@@ -21,4 +21,3 @@ public interface ICrudPublisher
     void Publish<TArgs>(TArgs args) where TArgs : CrudEventArgs;
 
 }
-

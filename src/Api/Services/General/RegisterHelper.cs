@@ -67,11 +67,11 @@ public static class RegisterHelper
 
         #region General
 
-        builder.Services.AddScoped(typeof(ITableRepoQry<>), typeof(TableQryRepo<>));
-        builder.Services.AddScoped(typeof(ITableRepoCmd<>), typeof(TableCmdRepo<>));
+        builder.Services.AddScoped(typeof(ITableQryRepo<>), typeof(TableQryRepo<>));
+        builder.Services.AddScoped(typeof(ITableCmdRepo<>), typeof(TableCmdRepo<>));
         builder.Services.AddScoped(typeof(IViewRepo<>), typeof(ViewRepo<>));
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-        builder.Services.AddScoped<IUserServiceQry, UserService>();
+        builder.Services.AddScoped<IUserQryService, UserService>();
         builder.Services.AddScoped<IUserServiceCmd, UserService>();
         builder.Services.AddScoped<IRefreshTokens, RefreshTokenService>();
         builder.Services.AddScoped<IAuditLog, AuditLogService>();

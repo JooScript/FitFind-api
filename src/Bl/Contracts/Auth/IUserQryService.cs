@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace ECommerce.Bl.Contracts.Auth;
 
-public interface IUserServiceQry
+public interface IUserQryService
 {
     Task<UserDto> GetUserByIdAsync(Guid userId);
 

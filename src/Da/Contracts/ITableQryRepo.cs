@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace ECommerce.Da.Contracts;
 
-public interface ITableRepoQry<Tb> where Tb : BaseTable
+public interface ITableQryRepo<Tb> where Tb : BaseTable
 {
     Task<List<Tb>> GetAllAsync(CancellationToken cancellationToken = default);
 

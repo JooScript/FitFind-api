@@ -14,9 +14,9 @@ public class UnitOfWork(ECommerceContext ctx, ILoggerFactory loggerFactory) : IU
 
 
 
-    public ITableRepoCmd<Tb> Repository<Tb>() where Tb : BaseTable
+    public ITableCmdRepo<Tb> Repository<Tb>() where Tb : BaseTable
     {
-        return (ITableRepoCmd<Tb>)_repositories.GetOrAdd(typeof(Tb), _ => new TableCmdRepo<Tb>(ctx, loggerFactory.CreateLogger<TableCmdRepo<Tb>>(), new TableQryRepo<Tb>(ctx, loggerFactory.CreateLogger<TableQryRepo<Tb>>())));
+        return (ITableCmdRepo<Tb>)_repositories.GetOrAdd(typeof(Tb), _ => new TableCmdRepo<Tb>(ctx, loggerFactory.CreateLogger<TableCmdRepo<Tb>>(), new TableQryRepo<Tb>(ctx, loggerFactory.CreateLogger<TableQryRepo<Tb>>())));
     }
 
     public async Task BeginTransactionAsync() => _tx = await ctx.Database.BeginTransactionAsync();

@@ -9,12 +9,12 @@ namespace ECommerce.Ui.Controllers;
 
 public class AccountController : Controller
 {
-    IUserServiceQry _userServiceQuery;
+    IUserQryService _userServiceQuery;
     IUserServiceCmd _userServiceCommand;
 
     private readonly GenericApiClient _apiClient;
 
-    public AccountController(IUserServiceQry userServiceQuery, IUserServiceCmd userServiceCommand, GenericApiClient apiClient)
+    public AccountController(IUserQryService userServiceQuery, IUserServiceCmd userServiceCommand, GenericApiClient apiClient)
     {
         _userServiceQuery = userServiceQuery;
         _userServiceCommand = userServiceCommand;

@@ -10,7 +10,7 @@ using ECommerce.Domains.Models;
 
 namespace ECommerce.Bl.Services.Business;
 
-public class SupportTicketService(ITableRepoQry<TbSupportTicket> repoQuery, ITableRepoCmd<TbSupportTicket> repoCommand, IMapper mapper, IUserServiceQry userServiceQuery, ICrudPublisher publisher) : BaseService<TbSupportTicket, SupportTicketDto>(repoQuery, repoCommand, mapper, userServiceQuery, publisher), ISupportTicket
+public class SupportTicketService(ITableQryRepo<TbSupportTicket> repoQuery, ITableCmdRepo<TbSupportTicket> repoCommand, IMapper mapper, IUserQryService userServiceQuery, ICrudPublisher publisher) : BaseService<TbSupportTicket, SupportTicketDto>(repoQuery, repoCommand, mapper, userServiceQuery, publisher), ISupportTicket
 {
     public async Task<PagedResult<SupportTicketDto>> GetPagedListAsync(int pageNumber = 1, int pageSize = 50)
     {

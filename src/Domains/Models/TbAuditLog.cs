@@ -1,8 +1,5 @@
 ﻿using ECommerce.Domains.Base;
 
-
-
-
 namespace ECommerce.Domains.Models;
 
 public partial class TbAuditLog : BaseTable

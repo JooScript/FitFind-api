@@ -57,7 +57,7 @@
             and are persisted server-side to allow rotation and invalidation.
             </remarks>
         </member>
-        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.#ctor(ECommerce.Bl.Contracts.Auth.ITokenService,ECommerce.Bl.Contracts.Auth.IUserServiceQry,ECommerce.Bl.Contracts.Auth.IUserServiceCmd,ECommerce.Bl.Contracts.Auth.IRefreshTokens)">
+        <member name="M:ECommerce.Api.Controllers.Auth.AuthController.#ctor(ECommerce.Bl.Contracts.Auth.ITokenService,ECommerce.Bl.Contracts.Auth.IUserQryService,ECommerce.Bl.Contracts.Auth.IUserServiceCmd,ECommerce.Bl.Contracts.Auth.IRefreshTokens)">
             <summary>
             Provides authentication and authorization endpoints including
             user registration, login, logout, token refresh, email confirmation,

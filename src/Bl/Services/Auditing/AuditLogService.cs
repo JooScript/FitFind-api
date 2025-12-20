@@ -9,5 +9,5 @@ using ECommerce.Domains.Models;
 
 namespace ECommerce.Bl.Services.Auditing;
 
-public class AuditLogService(ITableRepoQry<TbAuditLog> repoQuery, ITableRepoCmd<TbAuditLog> repoCommand, IMapper mapper, IUserServiceQry userServiceQuery, ICrudPublisher publisher) : BaseService<TbAuditLog, AuditLogDto>(repoQuery, repoCommand, mapper, userServiceQuery, publisher), IAuditLog
+public class AuditLogService(ITableQryRepo<TbAuditLog> repoQuery, ITableCmdRepo<TbAuditLog> repoCommand, IMapper mapper, IUserQryService userServiceQuery, ICrudPublisher publisher) : BaseService<TbAuditLog, AuditLogDto>(repoQuery, repoCommand, mapper, userServiceQuery, publisher), IAuditLog
 { }

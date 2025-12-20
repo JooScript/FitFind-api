@@ -4,11 +4,10 @@ using ECommerce.Da.Exceptions;
 using ECommerce.Domains.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Utils.Logging;
 
 namespace ECommerce.Da.Repos;
 
-public class TableCmdRepo<Tb>(ECommerceContext context, ILogger<TableCmdRepo<Tb>> logger, ITableRepoQry<Tb> repoQuery) : ITableRepoCmd<Tb> where Tb : BaseTable
+public class TableCmdRepo<Tb>(ECommerceContext context, ILogger<TableCmdRepo<Tb>> logger, ITableQryRepo<Tb> repoQuery) : ITableCmdRepo<Tb> where Tb : BaseTable
 {
     private readonly DbSet<Tb> _dbSet = (context ?? throw new ArgumentNullException(nameof(context))).Set<Tb>();
 

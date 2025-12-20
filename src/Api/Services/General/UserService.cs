@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Api.Services;
 
-public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IHttpContextAccessor httpContextAccessor, IConfiguration config, ILogger<UserService> logger) : IUserServiceQry, IUserServiceCmd
+public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IHttpContextAccessor httpContextAccessor, IConfiguration config, ILogger<UserService> logger) : IUserQryService, IUserServiceCmd
 {
     private const string DefaultRole = "User";
 

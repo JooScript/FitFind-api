@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace ECommerce.Da.Repos;
 
-public class TableQryRepo<Tb>(ECommerceContext context, ILogger<TableQryRepo<Tb>> logger) : ITableRepoQry<Tb> where Tb : BaseTable
+public class TableQryRepo<Tb>(ECommerceContext context, ILogger<TableQryRepo<Tb>> logger) : ITableQryRepo<Tb> where Tb : BaseTable
 {
     private readonly DbSet<Tb> _dbSet = (context ?? throw new ArgumentNullException(nameof(context))).Set<Tb>();
 

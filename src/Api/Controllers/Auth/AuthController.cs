@@ -21,7 +21,7 @@ namespace ECommerce.Api.Controllers.Auth;
 [Route("api/v1/auth")]
 [ApiController]
 [Authorize]
-public class AuthController(ITokenService tokenService, IUserServiceQry userServiceQuery, IUserServiceCmd userServiceCommand, IRefreshTokens refreshTokenService) : ControllerBase
+public class AuthController(ITokenService tokenService, IUserQryService userServiceQuery, IUserServiceCmd userServiceCommand, IRefreshTokens refreshTokenService) : ControllerBase
 {
     private readonly string RefreshTokenCookieName = "RefreshToken";
     private readonly string AccessTokenCookieName = "AccessToken";

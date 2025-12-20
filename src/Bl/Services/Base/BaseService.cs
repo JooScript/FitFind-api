@@ -12,14 +12,14 @@ namespace ECommerce.Bl.Services.Base;
 
 public abstract class BaseService<Tb, Dto> : IBaseService<Tb, Dto> where Tb : BaseTable
 {
-    readonly ITableRepoQry<Tb> _repoQuery;
-    readonly ITableRepoCmd<Tb> _repoCommand;
+    readonly ITableQryRepo<Tb> _repoQuery;
+    readonly ITableCmdRepo<Tb> _repoCommand;
     readonly IMapper _mapper;
-    readonly IUserServiceQry _userServiceQuery;
+    readonly IUserQryService _userServiceQuery;
     readonly IUnitOfWork _UnitOfWork;
     private readonly ICrudPublisher _publisher;
 
-    public BaseService(ITableRepoQry<Tb> repoQuery, ITableRepoCmd<Tb> repoCommand, IMapper mapper, IUserServiceQry userServiceQuery, ICrudPublisher publisher)
+    public BaseService(ITableQryRepo<Tb> repoQuery, ITableCmdRepo<Tb> repoCommand, IMapper mapper, IUserQryService userServiceQuery, ICrudPublisher publisher)
     {
         _repoQuery = repoQuery;
         _repoCommand = repoCommand;
@@ -28,7 +28,7 @@ public abstract class BaseService<Tb, Dto> : IBaseService<Tb, Dto> where Tb : Ba
         _publisher = publisher;
     }
 
-    public BaseService(IUnitOfWork unitofwork, IMapper mapper, IUserServiceQry userServiceQuery, ICrudPublisher publisher)
+    public BaseService(IUnitOfWork unitofwork, IMapper mapper, IUserQryService userServiceQuery, ICrudPublisher publisher)
     {
         _UnitOfWork = unitofwork;
         _repoCommand = unitofwork.Repository<Tb>();

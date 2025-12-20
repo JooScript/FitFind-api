@@ -10,7 +10,7 @@ using ECommerce.Domains.Models;
 
 namespace ECommerce.Bl.Services.Business;
 
-public class ProductService(ITableRepoQry<TbProduct> repoQuery, ITableRepoCmd<TbProduct> repoCommand, IMapper mapper, IUserServiceQry userServiceQuery, ICrudPublisher publisher) : BaseService<TbProduct, ProductDto>(repoQuery, repoCommand, mapper, userServiceQuery, publisher), IProduct
+public class ProductService(ITableQryRepo<TbProduct> repoQuery, ITableCmdRepo<TbProduct> repoCommand, IMapper mapper, IUserQryService userServiceQuery, ICrudPublisher publisher) : BaseService<TbProduct, ProductDto>(repoQuery, repoCommand, mapper, userServiceQuery, publisher), IProduct
 {
     public async Task<PagedResult<ProductDto>> GetPagedListAsync(int pageNumber = 1, int pageSize = 50)
     {

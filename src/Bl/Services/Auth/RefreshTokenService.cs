@@ -9,7 +9,7 @@ using static ECommerce.Bl.Enums.Status.Status;
 
 namespace ECommerce.Bl.Services.Auth;
 
-public class RefreshTokenService(ITableRepoQry<TbRefreshToken> repoQuery, ITableRepoCmd<TbRefreshToken> repoCommand, IMapper mapper, IUserServiceQry userService, ICrudPublisher publisher) : BaseService<TbRefreshToken, RefreshTokenDto>(repoQuery, repoCommand, mapper, userService, publisher), IRefreshTokens
+public class RefreshTokenService(ITableQryRepo<TbRefreshToken> repoQuery, ITableCmdRepo<TbRefreshToken> repoCommand, IMapper mapper, IUserQryService userService, ICrudPublisher publisher) : BaseService<TbRefreshToken, RefreshTokenDto>(repoQuery, repoCommand, mapper, userService, publisher), IRefreshTokens
 {
     public async Task<bool> Refresh(RefreshTokenDto tokenDto)
     {

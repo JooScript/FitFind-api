@@ -2,7 +2,7 @@
 
 namespace ECommerce.Da.Contracts;
 
-public interface ITableRepoCmd<Tb> where Tb : BaseTable
+public interface ITableCmdRepo<Tb> where Tb : BaseTable
 {
     Task<(bool success, Guid newId)> AddAsync(Tb entity, CancellationToken cancellationToken = default);
 
