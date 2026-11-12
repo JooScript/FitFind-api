@@ -1,4 +1,5 @@
 # Software Requirements Specification (SRS)
+
 ## Multi-Vendor Fashion E-Commerce Platform
 
 **Version:** 1.7  
@@ -12,7 +13,7 @@
 Requirements are classified into three priority levels:
 
 | Priority | Meaning | Target |
-|---|---|---|
+| --- | --- | --- |
 | P0 — MVP | Essential for the first usable production release. | Initial release |
 | P1 — Post-MVP | Important capabilities that can be introduced after the core marketplace is operational. | Subsequent releases |
 | P2 — Future | Advanced capabilities and enhancements that are not required for the initial business launch. | Future releases |
@@ -22,7 +23,7 @@ Security, data integrity, and reliability requirements may be mandatory even whe
 # 2. System Actors
 
 | Actor | Description |
-|---|---|
+| --- | --- |
 | Guest | Unauthenticated visitor who can browse publicly available products. |
 | Consumer | Registered customer who can purchase products and manage orders. |
 | Seller | Registered merchant who manages a store and sells products. |
@@ -37,7 +38,7 @@ Security, data integrity, and reliability requirements may be mandatory even whe
 ## Priority Overview
 
 | Rank | Requirement | Priority | MVP |
-|---:|---|---|---|
+| ---: | --- | --- | --- |
 | 1 | FR-01: Authentication and Authorization | P0 | Yes |
 | 2 | FR-03: Seller Store Management | P0 | Yes |
 | 3 | FR-04: Product and Variant Management | P0 | Yes |
@@ -422,7 +423,7 @@ Authentication header:
 ### API Key Management
 
 | Method | Endpoint |
-|---|---|
+| --- | --- |
 | POST | `/api/v1/seller/api-keys` |
 | GET | `/api/v1/seller/api-keys` |
 | GET | `/api/v1/seller/api-keys/{keyId}` |
@@ -436,7 +437,7 @@ These management endpoints require seller dashboard authentication.
 Base path: `/api/v1/seller-integration`
 
 | Method | Endpoint |
-|---|---|
+| --- | --- |
 | POST | `/api/v1/seller-integration/products` |
 | GET | `/api/v1/seller-integration/products` |
 | GET | `/api/v1/seller-integration/products/{productId}` |
@@ -447,7 +448,7 @@ Base path: `/api/v1/seller-integration`
 ### Variant Integration Endpoints
 
 | Method | Endpoint |
-|---|---|
+| --- | --- |
 | POST | `/api/v1/seller-integration/products/{productId}/variants` |
 | GET | `/api/v1/seller-integration/products/{productId}/variants` |
 | GET | `/api/v1/seller-integration/products/{productId}/variants/{variantId}` |
@@ -552,7 +553,7 @@ The administrator shall be able to:
 ## Priority Overview
 
 | Rank | Requirement | Priority | MVP |
-|---:|---|---|---|
+| ---: | --- | --- | --- |
 | 1 | NFR-02: Security | P0 | Yes |
 | 2 | NFR-05: Data Integrity | P0 | Yes |
 | 3 | NFR-14: Financial Accuracy and Auditability | P0 | Yes |
@@ -725,7 +726,7 @@ The platform shall maintain database backup and recovery procedures appropriate 
 # 5. Business Rules
 
 | ID | Rule |
-|---|---|
+| --- | --- |
 | BR-01 | Each seller owns and manages their own store and products. |
 | BR-02 | Seller registration does not require manual approval before dashboard access. |
 | BR-03 | Seller verification is separate from registration. |
@@ -838,7 +839,7 @@ The first release shall focus on enabling the complete marketplace sales lifecyc
 The following sequence is recommended to minimize dependencies and rework.
 
 | Step | Development Area | Main Deliverables |
-|---:|---|---|
+| ---: | --- | --- |
 | 1 | Project Foundation | Architecture, database, configuration, logging, deployment foundation. |
 | 2 | Identity | Consumer, seller, and administrator authentication and authorization. |
 | 3 | Seller Management | Seller registration, store creation, basic verification. |
@@ -900,7 +901,7 @@ The platform earns commission from applicable sales.
 Example:
 
 | Item | Amount |
-|---|---:|
+| --- | ---: |
 | Product subtotal | 1,000 EGP |
 | Example commission | 10% |
 | Platform commission | 100 EGP |
@@ -915,7 +916,7 @@ The 10% value is illustrative and configurable.
 The following decisions must be finalized before implementing the corresponding functionality:
 
 | Decision | Status |
-|---|---|
+| --- | --- |
 | Can unverified sellers publish and sell? | Open |
 | What documents are required for seller verification? | Open |
 | Which payment provider will be used? | Open |
