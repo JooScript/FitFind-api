@@ -8,7 +8,7 @@
 
 ---
 
-# 1. Prioritization Method
+## 1. Prioritization Method
 
 Requirements are classified into three priority levels:
 
@@ -18,9 +18,10 @@ Requirements are classified into three priority levels:
 | P1 — Post-MVP | Important capabilities that can be introduced after the core marketplace is operational. | Subsequent releases |
 | P2 — Future | Advanced capabilities and enhancements that are not required for the initial business launch. | Future releases |
 
-Security, data integrity, and reliability requirements may be mandatory even when they are not directly visible to users.
+Security, data integrity, and reliability requirements may be mandatory even
+when they are not directly visible to users.
 
-# 2. System Actors
+## 2. System Actors
 
 | Actor | Description |
 | --- | --- |
@@ -33,9 +34,9 @@ Security, data integrity, and reliability requirements may be mandatory even whe
 | Payment Provider | External payment service responsible for processing payments and payouts. |
 | AI Services | Platform-provided AI capabilities. |
 
-# 3. Functional Requirements — Prioritized
+## 3. Functional Requirements — Prioritized
 
-## Priority Overview
+### Functional Requirements Priority Overview
 
 | Rank | Requirement | Priority | MVP |
 | ---: | --- | --- | --- |
@@ -58,9 +59,9 @@ Security, data integrity, and reliability requirements may be mandatory even whe
 
 ---
 
-## FR-01: User Authentication and Authorization
+### FR-01: User Authentication and Authorization
 
-**Priority: P0 — MVP**
+**Priority:** P0 — MVP
 
 The system shall:
 
@@ -71,18 +72,21 @@ The system shall:
 5. Prevent users from accessing resources belonging to other users or sellers.
 6. Support administrator accounts with privileged permissions.
 
-**MVP scope:** Implement authentication, authorization, consumer accounts, seller accounts, and administrator access.
+**MVP scope:** Implement authentication, authorization, consumer accounts,
+seller accounts, and administrator access.
 
-## FR-02: Seller Registration and Verification
+### FR-02: Seller Registration and Verification
 
-**Priority: P0 — Basic verification in MVP**
+**Priority:** P0 — Basic verification in MVP
 
 The system shall:
 
-1. Allow sellers to register without requiring manual approval before accessing their dashboard.
+1. Allow sellers to register without requiring manual approval before accessing
+   their dashboard.
 2. Allow sellers to provide identity and business information.
 3. Allow sellers to submit verification documents where required.
-4. Provide an administrator interface for reviewing seller verification requests.
+4. Provide an administrator interface for reviewing seller verification
+   requests.
 5. Support the following verification statuses:
    - Unverified
    - Pending
@@ -103,13 +107,15 @@ The system shall:
 - Administrator review and approval/rejection.
 - Display verification status.
 
-Advanced automated verification providers and integrations can be introduced later.
+Advanced automated verification providers and integrations can be introduced
+later.
 
-The business must decide whether unverified sellers can publish products and accept orders.
+The business must decide whether unverified sellers can publish products and
+accept orders.
 
-## FR-03: Seller Store Management
+### FR-03: Seller Store Management
 
-**Priority: P0 — MVP**
+**Priority:** P0 — MVP
 
 The system shall allow sellers to:
 
@@ -122,15 +128,18 @@ The system shall allow sellers to:
 7. View earnings and payout information.
 8. Access store performance reports.
 
-**MVP scope:** Store creation, basic store customization, product listing, order visibility, and basic sales information.
+**MVP scope:** Store creation, basic store customization, product listing, order
+visibility, and basic sales information.
 
 Advanced analytics and performance reports can be introduced later.
 
-## FR-04: Product and Variant Management
+### FR-04: Product and Variant Management
 
-**Priority: P0 — MVP**
+**Priority:** P0 — MVP
 
-The system shall allow sellers to create and manage fashion products, including shirts, T-shirts, trousers, jeans, jackets, dresses, and other clothing categories.
+The system shall allow sellers to create and manage fashion products, including
+shirts, T-shirts, trousers, jeans, jackets, dresses, and other clothing
+categories.
 
 Each product may contain:
 
@@ -146,9 +155,11 @@ Each product may contain:
 10. SKU and external identifiers.
 11. Product quantity or variant quantities.
 
-For products with multiple sizes or colors, each variant shall maintain its own quantity.
+For products with multiple sizes or colors, each variant shall maintain its own
+quantity.
 
-The total available product quantity may be calculated from active variants rather than maintained as an independent conflicting value.
+The total available product quantity may be calculated from active variants
+rather than maintained as an independent conflicting value.
 
 Sellers shall be able to:
 
@@ -160,23 +171,26 @@ Sellers shall be able to:
 - Update product quantities manually.
 - Update quantities through the integration API.
 
-**MVP scope:** Product CRUD, product images, categories, sizes, colors, variants, pricing, and publishing.
+**MVP scope:** Product CRUD, product images, categories, sizes, colors,
+variants, pricing, and publishing.
 
-External identifiers required specifically for ERP synchronization can be expanded in P1.
+External identifiers required specifically for ERP synchronization can be
+expanded in P1.
 
-## FR-05: Product Quantity Management
+### FR-05: Product Quantity Management
 
-**Priority: P0 — Manual quantity management in MVP**
+**Priority:** P0 — Manual quantity management in MVP
 
 The platform shall support two quantity-update methods.
 
-### Manual Updates
+#### Manual Updates
 
 Sellers can update product or variant quantities through their dashboard.
 
-### API Updates
+#### API Updates
 
-External ERP systems can create products and update product information and quantities through seller-specific API credentials.
+External ERP systems can create products and update product information and
+quantities through seller-specific API credentials.
 
 Both methods shall update the same marketplace product and variant records.
 
@@ -187,10 +201,11 @@ The system shall:
 3. Record update timestamps.
 4. Prevent negative quantities.
 5. Apply transactional consistency.
-6. Handle concurrent updates using database-level locking or equivalent concurrency control.
+6. Handle concurrent updates using database-level locking or equivalent
+   concurrency control.
 7. Prevent outdated updates from silently overwriting newer database state.
 
-### MVP Scope
+#### MVP Scope
 
 - Manual product and variant quantity updates.
 - Quantity validation.
@@ -199,7 +214,7 @@ The system shall:
 - Prevention of duplicate stock changes.
 - Basic concurrency protection.
 
-### Post-MVP Scope
+#### Post-MVP Scope
 
 - External ERP quantity synchronization.
 - API-based product creation and updates.
@@ -207,9 +222,9 @@ The system shall:
 
 The platform does not replace the seller's external inventory-management system.
 
-## FR-06: Consumer Shopping Experience
+### FR-06: Consumer Shopping Experience
 
-**Priority: P0 — MVP**
+**Priority:** P0 — MVP
 
 The system shall allow consumers to:
 
@@ -224,15 +239,17 @@ The system shall allow consumers to:
 9. Track order status.
 10. Manage account information.
 
-**MVP scope:** Product browsing, basic search, filtering, product details, cart, checkout entry point, and order history.
+**MVP scope:** Product browsing, basic search, filtering, product details, cart,
+checkout entry point, and order history.
 
 Advanced AI search is not part of the initial release.
 
-## FR-07: Multi-Seller Checkout
+### FR-07: Multi-Seller Checkout
 
-**Priority: P0 — MVP**
+**Priority:** P0 — MVP
 
-The system shall support purchasing products from multiple sellers in one checkout process.
+The system shall support purchasing products from multiple sellers in one
+checkout process.
 
 A multi-seller checkout shall:
 
@@ -243,13 +260,15 @@ A multi-seller checkout shall:
 5. Track shipping and fulfillment separately where necessary.
 6. Calculate platform commission and seller earnings.
 
-**MVP scope:** One checkout, parent order, seller-specific sub-orders, and consistent order totals.
+**MVP scope:** One checkout, parent order, seller-specific sub-orders, and
+consistent order totals.
 
-## FR-08: Payment and Financial Management
+### FR-08: Payment and Financial Management
 
-**Priority: P0 — Essential payment flow in MVP**
+**Priority:** P0 — Essential payment flow in MVP
 
-The platform shall manage consumer payments through an integrated payment provider.
+The platform shall manage consumer payments through an integrated payment
+provider.
 
 The system shall:
 
@@ -273,11 +292,12 @@ The system shall:
 - Seller earnings calculation.
 - Financial transaction records.
 
-Advanced payout automation and reconciliation features may be phased in depending on payment-provider capabilities.
+Advanced payout automation and reconciliation features may be phased in
+depending on payment-provider capabilities.
 
-## FR-09: Configurable Subscription Management
+### FR-09: Configurable Subscription Management
 
-**Priority: P1 — Post-MVP**
+**Priority:** P1 — Post-MVP
 
 The platform shall support:
 
@@ -285,7 +305,8 @@ The platform shall support:
 - Premium
 - Max
 
-Subscription prices, billing periods, limits, and features shall be administrator-configurable.
+Subscription prices, billing periods, limits, and features shall be
+administrator-configurable.
 
 Administrators shall be able to configure:
 
@@ -300,13 +321,14 @@ Administrators shall be able to configure:
 9. Plan availability.
 10. Plan-specific benefits.
 
-**MVP scope:** Sellers can initially use the Free plan. The system should not hardcode Premium or Max pricing or limits.
+**MVP scope:** Sellers can initially use the Free plan. The system should not
+hardcode Premium or Max pricing or limits.
 
 Full subscription billing, plan upgrades, and advanced plan enforcement are P1.
 
-## FR-10: Configurable Commission Management
+### FR-10: Configurable Commission Management
 
-**Priority: P0 — Basic configuration in MVP**
+**Priority:** P0 — Basic configuration in MVP
 
 The platform shall provide configurable commission rules.
 
@@ -329,15 +351,18 @@ Supported calculation strategies may include:
 
 The default commission may start at 10%, but it is not a fixed business rule.
 
-The system shall preserve the commission configuration and calculation result applied to historical transactions.
+The system shall preserve the commission configuration and calculation result
+applied to historical transactions.
 
-**MVP scope:** Configurable default percentage, seller-specific override, commission calculation, and transaction audit records.
+**MVP scope:** Configurable default percentage, seller-specific override,
+commission calculation, and transaction audit records.
 
-Advanced category-specific rules and more complex commission strategies can be added in P1.
+Advanced category-specific rules and more complex commission strategies can be
+added in P1.
 
-## FR-11: Order and Shipment Management
+### FR-11: Order and Shipment Management
 
-**Priority: P0 — Basic lifecycle in MVP**
+**Priority:** P0 — Basic lifecycle in MVP
 
 The system shall:
 
@@ -361,13 +386,14 @@ Possible statuses:
 - Cancelled
 - Refunded
 
-**MVP scope:** Order creation, seller order management, status updates, cancellation handling, shipment tracking information, and order history.
+**MVP scope:** Order creation, seller order management, status updates,
+cancellation handling, shipment tracking information, and order history.
 
 Advanced carrier integrations can be introduced later.
 
-## FR-12: Cancellation and Refund Policy
+### FR-12: Cancellation and Refund Policy
 
-**Priority: P0 — Basic policy enforcement in MVP**
+**Priority:** P0 — Basic policy enforcement in MVP
 
 The default business policy is that purchases are not generally refundable.
 
@@ -393,19 +419,22 @@ The system shall:
 
 Stock restoration and refund processing shall remain separate operations.
 
-**MVP scope:** Basic cancellation rules, status tracking, manual exceptional-case handling, and correct stock behavior.
+**MVP scope:** Basic cancellation rules, status tracking, manual
+exceptional-case handling, and correct stock behavior.
 
-Advanced return workflows and configurable policy administration can be expanded later.
+Advanced return workflows and configurable policy administration can be expanded
+later.
 
-## FR-13: Seller API Integration
+### FR-13: Seller API Integration
 
-**Priority: P1 — Post-MVP**
+**Priority:** P1 — Post-MVP
 
 The platform shall provide secure APIs for seller-owned ERP systems.
 
-### API Authentication
+#### API Authentication
 
-Each seller shall be able to manage API credentials through the seller dashboard.
+Each seller shall be able to manage API credentials through the seller
+dashboard.
 
 API keys shall:
 
@@ -420,7 +449,7 @@ Authentication header:
 
 `X-API-Key: {seller_api_key}`
 
-### API Key Management
+#### API Key Management
 
 | Method | Endpoint |
 | --- | --- |
@@ -432,7 +461,7 @@ Authentication header:
 
 These management endpoints require seller dashboard authentication.
 
-### Product Integration Endpoints
+#### Product Integration Endpoints
 
 Base path: `/api/v1/seller-integration`
 
@@ -445,7 +474,7 @@ Base path: `/api/v1/seller-integration`
 | PATCH | `/api/v1/seller-integration/products/{productId}` |
 | DELETE | `/api/v1/seller-integration/products/{productId}` |
 
-### Variant Integration Endpoints
+#### Variant Integration Endpoints
 
 | Method | Endpoint |
 | --- | --- |
@@ -458,11 +487,12 @@ Base path: `/api/v1/seller-integration`
 
 There shall be no separate inventory resource or inventory endpoints.
 
-The API shall support HTTPS, JSON, versioning, pagination, validation, idempotency, rate limiting, and OpenAPI documentation.
+The API shall support HTTPS, JSON, versioning, pagination, validation,
+idempotency, rate limiting, and OpenAPI documentation.
 
-## FR-14: AI-Powered Product and Outfit Search
+### FR-14: AI-Powered Product and Outfit Search
 
-**Priority: P1 — Post-MVP**
+**Priority:** P1 — Post-MVP
 
 The platform shall provide its own AI-powered search capability.
 
@@ -484,7 +514,7 @@ The system shall:
 6. Support outfits containing products from multiple sellers.
 7. Avoid recommending fabricated or unavailable products.
 
-### AI Configuration
+#### AI Configuration
 
 Administrators shall be able to configure:
 
@@ -500,11 +530,12 @@ The maximum accepted AI request payload size shall be 3 MB.
 
 The system shall track usage and estimated costs and enforce configured limits.
 
-## FR-15: AI Virtual Try-On
+### FR-15: AI Virtual Try-On
 
-**Priority: P2 — Future**
+**Priority:** P2 — Future
 
-The platform shall provide Virtual Try-On functionality that allows consumers to visualize clothing using a camera or uploaded image.
+The platform shall provide Virtual Try-On functionality that allows consumers to
+visualize clothing using a camera or uploaded image.
 
 The feature shall:
 
@@ -514,17 +545,20 @@ The feature shall:
 4. Display the generated result.
 5. Allow consumers to try other supported products.
 
-Virtual Try-On is a visual estimation and does not guarantee actual physical fit or size.
+Virtual Try-On is a visual estimation and does not guarantee actual physical fit
+or size.
 
 Sellers must provide the garment assets required for the feature.
 
-The provider, processing model, image storage, retention duration, deletion, and consent policies remain configurable design decisions.
+The provider, processing model, image storage, retention duration, deletion, and
+consent policies remain configurable design decisions.
 
-Consumer images shall not be used for AI training without separate explicit consent.
+Consumer images shall not be used for AI training without separate explicit
+consent.
 
-## FR-16: Administrative Dashboard
+### FR-16: Administrative Dashboard
 
-**Priority: P0 — Essential administration in MVP**
+**Priority:** P0 — Essential administration in MVP
 
 The administrator shall be able to:
 
@@ -548,9 +582,9 @@ The administrator shall be able to:
 
 ---
 
-# 4. Non-Functional Requirements — Prioritized
+## 4. Non-Functional Requirements — Prioritized
 
-## Priority Overview
+### Non-Functional Requirements Priority Overview
 
 | Rank | Requirement | Priority | MVP |
 | ---: | --- | --- | --- |
@@ -569,9 +603,9 @@ The administrator shall be able to:
 | 13 | NFR-10: Maintainability | P0 | Yes |
 | 14 | NFR-12: Accessibility | P1 | Basic accessibility in MVP |
 
-## NFR-01: Performance
+### NFR-01: Performance
 
-**Priority: P0**
+**Priority:** P0
 
 1. Normal marketplace pages should load within acceptable response times.
 2. Product search shall be optimized for responsive results.
@@ -579,11 +613,12 @@ The administrator shall be able to:
 4. AI processing shall be isolated from normal marketplace operations.
 5. Long-running AI operations shall not block unrelated application requests.
 
-**MVP focus:** Fast product browsing, cart operations, checkout, and order processing.
+**MVP focus:** Fast product browsing, cart operations, checkout, and order
+processing.
 
-## NFR-02: Security
+### NFR-02: Security
 
-**Priority: P0 — Mandatory**
+**Priority:** P0 — Mandatory
 
 1. All communication shall use HTTPS.
 2. Passwords shall be securely hashed.
@@ -594,9 +629,9 @@ The administrator shall be able to:
 7. Administrative operations shall be auditable.
 8. File uploads shall be validated and protected against malicious content.
 
-## NFR-03: Scalability
+### NFR-03: Scalability
 
-**Priority: P1**
+**Priority:** P1
 
 The architecture shall support growth in:
 
@@ -607,31 +642,33 @@ The architecture shall support growth in:
 - API integration requests.
 - AI processing demand.
 
-The MVP shall use an architecture that does not prevent future scaling, but advanced scaling infrastructure is not required at launch.
+The MVP shall use an architecture that does not prevent future scaling, but
+advanced scaling infrastructure is not required at launch.
 
-## NFR-04: Availability and Reliability
+### NFR-04: Availability and Reliability
 
-**Priority: P0**
+**Priority:** P0
 
 1. Core shopping functions shall remain reliable.
 2. Failed external integrations shall not corrupt marketplace data.
 3. Payment and order operations shall prevent duplicate processing.
 4. Critical operations shall support appropriate retry and recovery mechanisms.
 
-## NFR-05: Data Integrity
+### NFR-05: Data Integrity
 
-**Priority: P0 — Mandatory**
+**Priority:** P0 — Mandatory
 
 1. Product quantities shall never become negative.
 2. Financial calculations shall be consistent and auditable.
 3. Order and payment records shall remain consistent.
-4. Concurrent quantity updates shall use appropriate database concurrency controls.
+4. Concurrent quantity updates shall use appropriate database concurrency
+   controls.
 5. Repeated order events shall not cause duplicate stock restoration.
 6. Refund status shall not automatically restore sellable stock.
 
-## NFR-06: API Quality
+### NFR-06: API Quality
 
-**Priority: P1 for external seller integration**
+**Priority:** P1 for external seller integration
 
 1. Integration APIs shall be versioned.
 2. API documentation shall be maintained.
@@ -642,21 +679,24 @@ The MVP shall use an architecture that does not prevent future scaling, but adva
 
 Basic internal API quality remains P0.
 
-## NFR-07: Privacy
+### NFR-07: Privacy
 
-**Priority: P0**
+**Priority:** P0
 
-1. Personal information shall be handled according to applicable privacy requirements.
+1. Personal information shall be handled according to applicable privacy
+   requirements.
 2. Consumer images shall have controlled access.
 3. Image retention and deletion shall follow configured policies.
-4. Consumer images shall not be used for AI training without separate explicit consent.
+4. Consumer images shall not be used for AI training without separate explicit
+   consent.
 5. Verification documents shall only be accessible to authorized personnel.
 
-The MVP must protect personal and verification data even though Virtual Try-On is deferred.
+The MVP must protect personal and verification data even though Virtual Try-On
+is deferred.
 
-## NFR-08: Usability
+### NFR-08: Usability
 
-**Priority: P0**
+**Priority:** P0
 
 1. Seller dashboards shall be understandable.
 2. Product creation shall support clothing-specific attributes.
@@ -664,27 +704,29 @@ The MVP must protect personal and verification data even though Virtual Try-On i
 4. The interface shall clearly display order and payment statuses.
 5. The application shall provide understandable validation and error messages.
 
-## NFR-09: Interoperability
+### NFR-09: Interoperability
 
-**Priority: P1**
+**Priority:** P1
 
-The platform shall support integration with seller-owned ERP systems through documented REST APIs.
+The platform shall support integration with seller-owned ERP systems through
+documented REST APIs.
 
 The MVP does not require external ERP integration.
 
-## NFR-10: Maintainability
+### NFR-10: Maintainability
 
-**Priority: P0**
+**Priority:** P0
 
 1. The system shall use a modular architecture.
 2. Business capabilities shall have clear boundaries.
 3. Subscription prices and commission rules shall not be hardcoded.
 4. AI capabilities shall be isolated behind service abstractions.
-5. Configuration changes shall not require application code changes where configuration is specified.
+5. Configuration changes shall not require application code changes where
+   configuration is specified.
 
-## NFR-11: Observability
+### NFR-11: Observability
 
-**Priority: P0 — Basic monitoring**
+**Priority:** P0 — Basic monitoring
 
 The platform shall record:
 
@@ -698,32 +740,36 @@ The platform shall record:
 
 Advanced AI usage and external integration monitoring can be added in P1.
 
-## NFR-12: Accessibility
+### NFR-12: Accessibility
 
-**Priority: P1**
+**Priority:** P1
 
 The interfaces shall follow appropriate web accessibility practices.
 
-The MVP should implement basic accessibility from the beginning, while a broader accessibility review can be completed after launch.
+The MVP should implement basic accessibility from the beginning, while a broader
+accessibility review can be completed after launch.
 
-## NFR-13: Backup and Recovery
+### NFR-13: Backup and Recovery
 
-**Priority: P0**
+**Priority:** P0
 
-The platform shall maintain database backup and recovery procedures appropriate for production data.
+The platform shall maintain database backup and recovery procedures appropriate
+for production data.
 
-## NFR-14: Financial Accuracy and Auditability
+### NFR-14: Financial Accuracy and Auditability
 
-**Priority: P0 — Mandatory**
+**Priority:** P0 — Mandatory
 
-1. Subscription charges, commissions, seller earnings, payments, and payouts shall be traceable.
-2. Historical transactions shall preserve the financial rules applied when they were created.
+1. Subscription charges, commissions, seller earnings, payments, and payouts
+   shall be traceable.
+2. Historical transactions shall preserve the financial rules applied when they
+   were created.
 3. Financial processing shall be protected against duplicate execution.
 4. Monetary calculations shall use appropriate precision and rounding rules.
 
 ---
 
-# 5. Business Rules
+## 5. Business Rules
 
 | ID | Rule |
 | --- | --- |
@@ -755,7 +801,7 @@ The platform shall maintain database backup and recovery procedures appropriate 
 
 ---
 
-# 6. System Architecture
+## 6. System Architecture
 
 The initial architecture shall follow a modular monolithic approach.
 
@@ -776,7 +822,8 @@ Suggested logical modules:
 13. Virtual Try-On
 14. Administration and Reporting
 
-The initial release does not require a separate platform-owned inventory-management module.
+The initial release does not require a separate platform-owned
+inventory-management module.
 
 Product quantities are maintained as part of product and variant data.
 
@@ -786,11 +833,12 @@ AI features shall be implemented behind internal service abstractions.
 
 ---
 
-# 7. MVP Scope
+## 7. MVP Scope
 
-The first release shall focus on enabling the complete marketplace sales lifecycle.
+The first release shall focus on enabling the complete marketplace sales
+lifecycle.
 
-## Included in MVP
+### Included in MVP
 
 - [ ] Consumer authentication.
 - [ ] Seller registration and authentication.
@@ -816,7 +864,7 @@ The first release shall focus on enabling the complete marketplace sales lifecyc
 - [ ] Basic administrator dashboard.
 - [ ] Essential security, logging, backups, and monitoring.
 
-## Excluded from MVP
+### Excluded from MVP
 
 - [ ] Premium and Max subscription billing.
 - [ ] Advanced subscription plan management.
@@ -834,7 +882,7 @@ The first release shall focus on enabling the complete marketplace sales lifecyc
 
 ---
 
-# 8. Suggested MVP Development Sequence
+## 8. Suggested MVP Development Sequence
 
 The following sequence is recommended to minimize dependencies and rework.
 
@@ -853,7 +901,7 @@ The following sequence is recommended to minimize dependencies and rework.
 
 ---
 
-# 9. Acceptance Criteria for MVP
+## 9. Acceptance Criteria for MVP
 
 The MVP is ready for release when:
 
@@ -878,11 +926,11 @@ The MVP is ready for release when:
 
 ---
 
-# 10. Financial Model Summary
+## 10. Financial Model Summary
 
 The platform has two primary revenue streams.
 
-## 10.1 Subscription Revenue
+### 10.1 Subscription Revenue
 
 Supported plans:
 
@@ -890,11 +938,12 @@ Supported plans:
 - Premium
 - Max
 
-Premium and Max prices, billing periods, and features are configurable by administrators.
+Premium and Max prices, billing periods, and features are configurable by
+administrators.
 
 The initial MVP may operate with the Free plan.
 
-## 10.2 Transaction Commission
+### 10.2 Transaction Commission
 
 The platform earns commission from applicable sales.
 
@@ -911,9 +960,10 @@ The 10% value is illustrative and configurable.
 
 ---
 
-# 11. Open Decisions
+## 11. Open Decisions
 
-The following decisions must be finalized before implementing the corresponding functionality:
+The following decisions must be finalized before implementing the corresponding
+functionality:
 
 | Decision | Status |
 | --- | --- |
@@ -933,12 +983,16 @@ The following decisions must be finalized before implementing the corresponding 
 
 ---
 
-# 12. Document Status
+## 12. Document Status
 
-**Version 1.7 — Prioritized Requirements Draft**
+**Version 1.7** — Prioritized Requirements Draft
 
-This document prioritizes requirements for the initial MVP and subsequent releases.
+This document prioritizes requirements for the initial MVP and subsequent
+releases.
 
-P0 requirements define the minimum production-ready marketplace. P1 requirements define important post-launch capabilities. P2 requirements define future enhancements.
+P0 requirements define the minimum production-ready marketplace. P1 requirements
+define important post-launch capabilities. P2 requirements define future
+enhancements.
 
-Priority does not remove mandatory security, privacy, financial integrity, or reliability requirements.
+Priority does not remove mandatory security, privacy, financial integrity, or
+reliability requirements.
