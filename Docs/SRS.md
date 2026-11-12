@@ -2,8 +2,8 @@
 
 ## Multi-Vendor Fashion E-Commerce Platform
 
-**Version:** 1.7  
-**Status:** Prioritized Requirements Draft  
+**Version:** 1.7
+**Status:** Prioritized Requirements Draft
 **Document Type:** Functional and Non-Functional Requirements
 
 ---
