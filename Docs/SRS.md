@@ -34,7 +34,7 @@ when they are not directly visible to users.
 | Payment Provider | External payment service responsible for processing payments and payouts. |
 | AI Services | Platform-provided AI capabilities. |
 
-## 3. Functional Requirements — Prioritized
+## 3. Functional Requirements
 
 ### Functional Requirements Priority Overview
 
