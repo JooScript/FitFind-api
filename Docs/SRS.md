@@ -574,18 +574,6 @@ Consumer images shall not be used for AI training without separate explicit cons
 | 13 | NFR-13: Maintainability | P0 | Yes |
 | 14 | NFR-14: Accessibility | P1 | Basic accessibility in MVP |
 
-### NFR-05: Performance
-
-**Priority:** P0
-
-1. Normal marketplace pages should load within acceptable response times.
-2. Product search shall be optimized for responsive results.
-3. API endpoints shall avoid unnecessary database queries.
-4. AI processing shall be isolated from normal marketplace operations.
-5. Long-running AI operations shall not block unrelated application requests.
-
-**MVP focus:** Fast product browsing, cart operations, checkout, and order processing.
-
 ### NFR-01: Security
 
 **Priority:** P0 — Mandatory
@@ -598,6 +586,91 @@ Consumer images shall not be used for AI training without separate explicit cons
 6. Sensitive financial and personal data shall be protected.
 7. Administrative operations shall be auditable.
 8. File uploads shall be validated and protected against malicious content.
+
+### NFR-02: Data Integrity
+
+**Priority:** P0 — Mandatory
+
+1. Product quantities shall never become negative.
+2. Financial calculations shall be consistent and auditable.
+3. Order and payment records shall remain consistent.
+4. Concurrent quantity updates shall use appropriate database concurrency controls.
+5. Repeated order events shall not cause duplicate stock restoration.
+6. Refund status shall not automatically restore sellable stock.
+
+### NFR-03: Financial Accuracy and Auditability
+
+**Priority:** P0 — Mandatory
+
+1. Subscription charges, commissions, seller earnings, payments, and payouts shall be traceable.
+2. Historical transactions shall preserve the financial rules applied when they were created.
+3. Financial processing shall be protected against duplicate execution.
+4. Monetary calculations shall use appropriate precision and rounding rules.
+
+### NFR-04: Availability and Reliability
+
+**Priority:** P0
+
+1. Core shopping functions shall remain reliable.
+2. Failed external integrations shall not corrupt marketplace data.
+3. Payment and order operations shall prevent duplicate processing.
+4. Critical operations shall support appropriate retry and recovery mechanisms.
+
+### NFR-05: Performance
+
+**Priority:** P0
+
+1. Normal marketplace pages should load within acceptable response times.
+2. Product search shall be optimized for responsive results.
+3. API endpoints shall avoid unnecessary database queries.
+4. AI processing shall be isolated from normal marketplace operations.
+5. Long-running AI operations shall not block unrelated application requests.
+
+**MVP focus:** Fast product browsing, cart operations, checkout, and order processing.
+
+### NFR-06: Privacy
+
+**Priority:** P0
+
+1. Personal information shall be handled according to applicable privacy requirements.
+2. Consumer images shall have controlled access.
+3. Image retention and deletion shall follow configured policies.
+4. Consumer images shall not be used for AI training without separate explicit consent.
+5. Verification documents shall only be accessible to authorized personnel.
+
+The MVP must protect personal and verification data even though Virtual Try-On is deferred.
+
+### NFR-07: Usability
+
+**Priority:** P0
+
+1. Seller dashboards shall be understandable.
+2. Product creation shall support clothing-specific attributes.
+3. Consumers shall navigate products and checkout efficiently.
+4. The interface shall clearly display order and payment statuses.
+5. The application shall provide understandable validation and error messages.
+
+### NFR-08: Observability
+
+**Priority:** P0 — Basic monitoring
+
+The platform shall record:
+
+- Application errors.
+- API requests.
+- Quantity changes.
+- Order status transitions.
+- Payment transactions.
+- Commission calculations.
+- Administrative configuration changes.
+
+Advanced AI usage and external integration monitoring can be added in P1.
+
+### NFR-09: Backup and Recovery
+
+**Priority:** P0
+
+The platform shall maintain database backup and recovery procedures appropriate for production data.
 
 ### NFR-10: Scalability
 
@@ -614,26 +687,6 @@ The architecture shall support growth in:
 
 The MVP shall use an architecture that does not prevent future scaling, but advanced scaling infrastructure is not required at launch.
 
-### NFR-04: Availability and Reliability
-
-**Priority:** P0
-
-1. Core shopping functions shall remain reliable.
-2. Failed external integrations shall not corrupt marketplace data.
-3. Payment and order operations shall prevent duplicate processing.
-4. Critical operations shall support appropriate retry and recovery mechanisms.
-
-### NFR-02: Data Integrity
-
-**Priority:** P0 — Mandatory
-
-1. Product quantities shall never become negative.
-2. Financial calculations shall be consistent and auditable.
-3. Order and payment records shall remain consistent.
-4. Concurrent quantity updates shall use appropriate database concurrency controls.
-5. Repeated order events shall not cause duplicate stock restoration.
-6. Refund status shall not automatically restore sellable stock.
-
 ### NFR-11: API Quality
 
 **Priority:** P1 for external seller integration
@@ -646,30 +699,6 @@ The MVP shall use an architecture that does not prevent future scaling, but adva
 6. API behavior shall be backward-compatible within supported versions.
 
 Basic internal API quality remains P0.
-
-### NFR-06: Privacy
-
-**Priority:** P0
-
-1. Personal information shall be handled according to applicable privacy requirements.
-2. Consumer images shall have controlled access.
-3. Image retention and deletion shall follow configured policies.
-4. Consumer images shall not be used for AI training without separate explicit
-   consent.
-5. Verification documents shall only be accessible to authorized personnel.
-
-The MVP must protect personal and verification data even though Virtual Try-On
-is deferred.
-
-### NFR-07: Usability
-
-**Priority:** P0
-
-1. Seller dashboards shall be understandable.
-2. Product creation shall support clothing-specific attributes.
-3. Consumers shall navigate products and checkout efficiently.
-4. The interface shall clearly display order and payment statuses.
-5. The application shall provide understandable validation and error messages.
 
 ### NFR-12: Interoperability
 
@@ -691,48 +720,13 @@ The MVP does not require external ERP integration.
 5. Configuration changes shall not require application code changes where
    configuration is specified.
 
-### NFR-08: Observability
-
-**Priority:** P0 — Basic monitoring
-
-The platform shall record:
-
-- Application errors.
-- API requests.
-- Quantity changes.
-- Order status transitions.
-- Payment transactions.
-- Commission calculations.
-- Administrative configuration changes.
-
-Advanced AI usage and external integration monitoring can be added in P1.
-
 ### NFR-14: Accessibility
 
 **Priority:** P1
 
 The interfaces shall follow appropriate web accessibility practices.
 
-The MVP should implement basic accessibility from the beginning, while a broader
-accessibility review can be completed after launch.
-
-### NFR-09: Backup and Recovery
-
-**Priority:** P0
-
-The platform shall maintain database backup and recovery procedures appropriate
-for production data.
-
-### NFR-03: Financial Accuracy and Auditability
-
-**Priority:** P0 — Mandatory
-
-1. Subscription charges, commissions, seller earnings, payments, and payouts
-   shall be traceable.
-2. Historical transactions shall preserve the financial rules applied when they
-   were created.
-3. Financial processing shall be protected against duplicate execution.
-4. Monetary calculations shall use appropriate precision and rounding rules.
+The MVP should implement basic accessibility from the beginning, while a broader accessibility review can be completed after launch.
 
 ---
 
