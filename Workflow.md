@@ -690,7 +690,7 @@ flowchart TD
 ## 16. Workflow Priority Summary
 
 | Workflow | Priority |
-|---|---|
+| --- | --- |
 | User registration and authentication | P0 |
 | Seller registration and verification | P0 |
 | Store management | P0 |
@@ -712,7 +712,7 @@ flowchart TD
 
 ## 17. Document Status
 
-**Version 1.0 — Workflow Draft**
+### Version 1.0 — Workflow Draft
 
 This document focuses on visual representations of FitFind business processes. Detailed functional requirements, business rules, non-functional requirements, and technical constraints remain documented in the related SRS.
 
