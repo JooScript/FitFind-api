@@ -41,21 +41,21 @@ when they are not directly visible to users.
 | Rank | Requirement | Priority | MVP |
 | ---: | --- | --- | --- |
 | 1 | FR-01: Authentication and Authorization | P0 | Yes |
-| 2 | FR-03: Seller Store Management | P0 | Yes |
-| 3 | FR-04: Product and Variant Management | P0 | Yes |
-| 4 | FR-05: Product Quantity Management | P0 | Yes, manual updates |
-| 5 | FR-06: Consumer Shopping Experience | P0 | Yes |
-| 6 | FR-07: Multi-Seller Checkout | P0 | Yes |
-| 7 | FR-08: Payment and Financial Management | P0 | Yes, essential payment flow |
-| 8 | FR-11: Order and Shipment Management | P0 | Yes, basic lifecycle |
-| 9 | FR-16: Administrative Dashboard | P0 | Yes, essential controls |
-| 10 | FR-02: Seller Registration and Verification | P0 | Basic verification |
-| 11 | FR-10: Configurable Commission Management | P0 | Basic configurable rules |
+| 2 | FR-02: Seller Store Management | P0 | Yes |
+| 3 | FR-03: Product and Variant Management | P0 | Yes |
+| 4 | FR-04: Product Quantity Management | P0 | Yes, manual updates |
+| 5 | FR-05: Consumer Shopping Experience | P0 | Yes |
+| 6 | FR-06: Multi-Seller Checkout | P0 | Yes |
+| 7 | FR-07: Payment and Financial Management | P0 | Yes, essential payment flow |
+| 8 | FR-08: Order and Shipment Management | P0 | Yes, basic lifecycle |
+| 9 | FR-09: Administrative Dashboard | P0 | Yes, essential controls |
+| 10 | FR-10: Seller Registration and Verification | P0 | Basic verification |
+| 11 | FR-11: Configurable Commission Management | P0 | Basic configurable rules |
 | 12 | FR-12: Cancellation and Refund Policy | P0 | Basic cancellation policy |
-| 13 | FR-09: Configurable Subscription Management | P1 | Free plan initially |
-| 14 | FR-13: Seller API Integration | P1 | No |
-| 15 | FR-14: AI-Powered Product and Outfit Search | P1 | No |
-| 16 | FR-15: AI Virtual Try-On | P2 | No |
+| 13 | FR-13: Configurable Subscription Management | P1 | Free plan initially |
+| 14 | FR-14: Seller API Integration | P1 | No |
+| 15 | FR-15: AI-Powered Product and Outfit Search | P1 | No |
+| 16 | FR-16: AI Virtual Try-On | P2 | No |
 
 ---
 
@@ -75,39 +75,7 @@ The system shall:
 **MVP scope:** Implement authentication, authorization, consumer accounts,
 seller accounts, and administrator access.
 
-### FR-02: Seller Registration and Verification
-
-**Priority:** P0 — Basic verification in MVP
-
-The system shall:
-
-1. Allow sellers to register without requiring manual approval before accessing their dashboard.
-2. Allow sellers to provide identity and business information.
-3. Allow sellers to submit verification documents where required.
-4. Provide an administrator interface for reviewing seller verification requests.
-5. Support the following verification statuses:
-   - Unverified
-   - Pending
-   - Verified
-   - Rejected
-   - Suspended
-6. Allow administrators to approve or reject verification requests.
-7. Record verification decisions and timestamps.
-8. Allow administrators to request additional information.
-9. Display seller verification status to consumers.
-10. Distinguish seller registration from seller verification.
-
-**MVP scope:**
-
-- Seller registration.
-- Basic business information.
-- Verification status.
-- Administrator review and approval/rejection.
-- Display verification status.
-- Advanced automated verification providers and integrations can be introduced later.
-- The business must decide whether unverified sellers can publish products and accept orders.
-
-### FR-03: Seller Store Management
+### FR-02: Seller Store Management
 
 **Priority:** P0 — MVP
 
@@ -126,7 +94,7 @@ The system shall allow sellers to:
 
 Advanced analytics and performance reports can be introduced later.
 
-### FR-04: Product and Variant Management
+### FR-03: Product and Variant Management
 
 **Priority:** P0 — MVP
 
@@ -166,7 +134,7 @@ variants, pricing, and publishing.
 
 External identifiers required specifically for ERP synchronization can be expanded in P1.
 
-### FR-05: Product Quantity Management
+### FR-04: Product Quantity Management
 
 **Priority:** P0 — Manual quantity management in MVP
 
@@ -209,7 +177,7 @@ The system shall:
 
 The platform does not replace the seller's external inventory-management system.
 
-### FR-06: Consumer Shopping Experience
+### FR-05: Consumer Shopping Experience
 
 **Priority:** P0 — MVP
 
@@ -231,7 +199,7 @@ checkout entry point, and order history.
 
 Advanced AI search is not part of the initial release.
 
-### FR-07: Multi-Seller Checkout
+### FR-06: Multi-Seller Checkout
 
 **Priority:** P0 — MVP
 
@@ -249,7 +217,7 @@ A multi-seller checkout shall:
 
 **MVP scope:** One checkout, parent order, seller-specific sub-orders, and consistent order totals.
 
-### FR-08: Payment and Financial Management
+### FR-07: Payment and Financial Management
 
 **Priority:** P0 — Essential payment flow in MVP
 
@@ -279,37 +247,93 @@ The system shall:
 
 Advanced payout automation and reconciliation features may be phased in depending on payment-provider capabilities.
 
-### FR-09: Configurable Subscription Management
+### FR-08: Order and Shipment Management
 
-**Priority:** P1 — Post-MVP
+**Priority:** P0 — Basic lifecycle in MVP
 
-The platform shall support:
+The system shall:
 
-- Free
-- Premium
-- Max
+1. Create orders after successful checkout.
+2. Create seller-specific sub-orders.
+3. Allow sellers to process assigned orders.
+4. Support shipment status updates.
+5. Record shipment information.
+6. Allow consumers to view order progress.
+7. Support order receipt confirmation.
+8. Maintain order status history.
 
-Subscription prices, billing periods, limits, and features shall be
-administrator-configurable.
+Possible statuses:
 
-Administrators shall be able to configure:
+- Pending
+- Confirmed
+- Processing
+- Shipped
+- Delivered
+- Received
+- Cancelled
+- Refunded
 
-1. Plan names.
-2. Prices.
-3. Billing periods.
-4. Product limits.
-5. API access permissions.
-6. API usage limits.
-7. Available seller features.
-8. Activation and expiration rules.
-9. Plan availability.
-10. Plan-specific benefits.
+**MVP scope:** Order creation, seller order management, status updates, cancellation handling, shipment tracking information, and order history.
 
-**MVP scope:** Sellers can initially use the Free plan. The system should not hardcode Premium or Max pricing or limits.
+Advanced carrier integrations can be introduced later.
 
-Full subscription billing, plan upgrades, and advanced plan enforcement are P1.
+### FR-09: Administrative Dashboard
 
-### FR-10: Configurable Commission Management
+**Priority:** P0 — Essential administration in MVP
+
+The administrator shall be able to:
+
+1. Manage users and sellers.
+2. Review seller verification requests.
+3. Suspend or reactivate sellers.
+4. Manage product categories.
+5. Configure basic commission rules.
+6. Review orders and payments.
+7. Review exceptional cancellation and refund cases.
+8. Monitor basic platform activity.
+9. Access basic financial reports.
+
+**P1 additions:**
+
+- Full subscription plan configuration.
+- Advanced commission strategies.
+- AI provider and model configuration.
+- AI usage and cost monitoring.
+- Advanced reporting and analytics.
+
+### FR-10: Seller Registration and Verification
+
+**Priority:** P0 — Basic verification in MVP
+
+The system shall:
+
+1. Allow sellers to register without requiring manual approval before accessing their dashboard.
+2. Allow sellers to provide identity and business information.
+3. Allow sellers to submit verification documents where required.
+4. Provide an administrator interface for reviewing seller verification requests.
+5. Support the following verification statuses:
+   - Unverified
+   - Pending
+   - Verified
+   - Rejected
+   - Suspended
+6. Allow administrators to approve or reject verification requests.
+7. Record verification decisions and timestamps.
+8. Allow administrators to request additional information.
+9. Display seller verification status to consumers.
+10. Distinguish seller registration from seller verification.
+
+**MVP scope:**
+
+- Seller registration.
+- Basic business information.
+- Verification status.
+- Administrator review and approval/rejection.
+- Display verification status.
+- Advanced automated verification providers and integrations can be introduced later.
+- The business must decide whether unverified sellers can publish products and accept orders.
+
+### FR-11: Configurable Commission Management
 
 **Priority:** P0 — Basic configuration in MVP
 
@@ -339,36 +363,6 @@ The system shall preserve the commission configuration and calculation result ap
 **MVP scope:** Configurable default percentage, seller-specific override, commission calculation, and transaction audit records.
 
 Advanced category-specific rules and more complex commission strategies can be added in P1.
-
-### FR-11: Order and Shipment Management
-
-**Priority:** P0 — Basic lifecycle in MVP
-
-The system shall:
-
-1. Create orders after successful checkout.
-2. Create seller-specific sub-orders.
-3. Allow sellers to process assigned orders.
-4. Support shipment status updates.
-5. Record shipment information.
-6. Allow consumers to view order progress.
-7. Support order receipt confirmation.
-8. Maintain order status history.
-
-Possible statuses:
-
-- Pending
-- Confirmed
-- Processing
-- Shipped
-- Delivered
-- Received
-- Cancelled
-- Refunded
-
-**MVP scope:** Order creation, seller order management, status updates, cancellation handling, shipment tracking information, and order history.
-
-Advanced carrier integrations can be introduced later.
 
 ### FR-12: Cancellation and Refund Policy
 
@@ -402,7 +396,37 @@ Stock restoration and refund processing shall remain separate operations.
 
 Advanced return workflows and configurable policy administration can be expanded later.
 
-### FR-13: Seller API Integration
+### FR-13: Configurable Subscription Management
+
+**Priority:** P1 — Post-MVP
+
+The platform shall support:
+
+- Free
+- Premium
+- Max
+
+Subscription prices, billing periods, limits, and features shall be
+administrator-configurable.
+
+Administrators shall be able to configure:
+
+1. Plan names.
+2. Prices.
+3. Billing periods.
+4. Product limits.
+5. API access permissions.
+6. API usage limits.
+7. Available seller features.
+8. Activation and expiration rules.
+9. Plan availability.
+10. Plan-specific benefits.
+
+**MVP scope:** Sellers can initially use the Free plan. The system should not hardcode Premium or Max pricing or limits.
+
+Full subscription billing, plan upgrades, and advanced plan enforcement are P1.
+
+### FR-14: Seller API Integration
 
 **Priority:** P1 — Post-MVP
 
@@ -465,7 +489,7 @@ There shall be no separate inventory resource or inventory endpoints.
 
 The API shall support HTTPS, JSON, versioning, pagination, validation, idempotency, rate limiting, and OpenAPI documentation.
 
-### FR-14: AI-Powered Product and Outfit Search
+### FR-15: AI-Powered Product and Outfit Search
 
 **Priority:** P1 — Post-MVP
 
@@ -505,7 +529,7 @@ The maximum accepted AI request payload size shall be 3 MB.
 
 The system shall track usage and estimated costs and enforce configured limits.
 
-### FR-15: AI Virtual Try-On
+### FR-16: AI Virtual Try-On
 
 **Priority:** P2 — Future
 
@@ -526,30 +550,6 @@ Sellers must provide the garment assets required for the feature.
 The provider, processing model, image storage, retention duration, deletion, and consent policies remain configurable design decisions.
 
 Consumer images shall not be used for AI training without separate explicit consent.
-
-### FR-16: Administrative Dashboard
-
-**Priority:** P0 — Essential administration in MVP
-
-The administrator shall be able to:
-
-1. Manage users and sellers.
-2. Review seller verification requests.
-3. Suspend or reactivate sellers.
-4. Manage product categories.
-5. Configure basic commission rules.
-6. Review orders and payments.
-7. Review exceptional cancellation and refund cases.
-8. Monitor basic platform activity.
-9. Access basic financial reports.
-
-**P1 additions:**
-
-- Full subscription plan configuration.
-- Advanced commission strategies.
-- AI provider and model configuration.
-- AI usage and cost monitoring.
-- Advanced reporting and analytics.
 
 ---
 
@@ -1199,7 +1199,7 @@ HTTPS.
 The API shall use seller-scoped credentials and shall ensure that every
 requested resource belongs to the authenticated seller.
 
-The API shall support the product and variant operations defined in FR-13,
+The API shall support the product and variant operations defined in FR-14,
 including validation, pagination, rate limiting, idempotency where applicable,
 and consistent error responses.
 
