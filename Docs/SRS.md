@@ -553,7 +553,7 @@ Consumer images shall not be used for AI training without separate explicit cons
 
 ---
 
-## 4. Non-Functional Requirements — Prioritized
+## 4. Non-Functional Requirements
 
 ### Non-Functional Requirements Priority Overview
 
