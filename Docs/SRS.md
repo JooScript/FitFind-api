@@ -559,22 +559,22 @@ Consumer images shall not be used for AI training without separate explicit cons
 
 | Rank | Requirement | Priority | MVP |
 | ---: | --- | --- | --- |
-| 1 | NFR-02: Security | P0 | Yes |
-| 2 | NFR-05: Data Integrity | P0 | Yes |
-| 3 | NFR-14: Financial Accuracy and Auditability | P0 | Yes |
+| 1 | NFR-01: Security | P0 | Yes |
+| 2 | NFR-02: Data Integrity | P0 | Yes |
+| 3 | NFR-03: Financial Accuracy and Auditability | P0 | Yes |
 | 4 | NFR-04: Availability and Reliability | P0 | Yes |
-| 5 | NFR-01: Performance | P0 | Yes |
-| 6 | NFR-07: Privacy | P0 | Yes |
-| 7 | NFR-08: Usability | P0 | Yes |
-| 8 | NFR-11: Observability | P0 | Basic |
-| 9 | NFR-13: Backup and Recovery | P0 | Yes |
-| 10 | NFR-03: Scalability | P1 | Basic architecture only |
-| 11 | NFR-06: API Quality | P1 | Basic internal APIs |
-| 12 | NFR-09: Interoperability | P1 | External ERP integration |
-| 13 | NFR-10: Maintainability | P0 | Yes |
-| 14 | NFR-12: Accessibility | P1 | Basic accessibility in MVP |
+| 5 | NFR-05: Performance | P0 | Yes |
+| 6 | NFR-06: Privacy | P0 | Yes |
+| 7 | NFR-07: Usability | P0 | Yes |
+| 8 | NFR-08: Observability | P0 | Basic |
+| 9 | NFR-09: Backup and Recovery | P0 | Yes |
+| 10 | NFR-10: Scalability | P1 | Basic architecture only |
+| 11 | NFR-11: API Quality | P1 | Basic internal APIs |
+| 12 | NFR-12: Interoperability | P1 | External ERP integration |
+| 13 | NFR-13: Maintainability | P0 | Yes |
+| 14 | NFR-14: Accessibility | P1 | Basic accessibility in MVP |
 
-### NFR-01: Performance
+### NFR-05: Performance
 
 **Priority:** P0
 
@@ -586,7 +586,7 @@ Consumer images shall not be used for AI training without separate explicit cons
 
 **MVP focus:** Fast product browsing, cart operations, checkout, and order processing.
 
-### NFR-02: Security
+### NFR-01: Security
 
 **Priority:** P0 — Mandatory
 
@@ -599,7 +599,7 @@ Consumer images shall not be used for AI training without separate explicit cons
 7. Administrative operations shall be auditable.
 8. File uploads shall be validated and protected against malicious content.
 
-### NFR-03: Scalability
+### NFR-10: Scalability
 
 **Priority:** P1
 
@@ -623,7 +623,7 @@ The MVP shall use an architecture that does not prevent future scaling, but adva
 3. Payment and order operations shall prevent duplicate processing.
 4. Critical operations shall support appropriate retry and recovery mechanisms.
 
-### NFR-05: Data Integrity
+### NFR-02: Data Integrity
 
 **Priority:** P0 — Mandatory
 
@@ -634,7 +634,7 @@ The MVP shall use an architecture that does not prevent future scaling, but adva
 5. Repeated order events shall not cause duplicate stock restoration.
 6. Refund status shall not automatically restore sellable stock.
 
-### NFR-06: API Quality
+### NFR-11: API Quality
 
 **Priority:** P1 for external seller integration
 
@@ -647,7 +647,7 @@ The MVP shall use an architecture that does not prevent future scaling, but adva
 
 Basic internal API quality remains P0.
 
-### NFR-07: Privacy
+### NFR-06: Privacy
 
 **Priority:** P0
 
@@ -661,7 +661,7 @@ Basic internal API quality remains P0.
 The MVP must protect personal and verification data even though Virtual Try-On
 is deferred.
 
-### NFR-08: Usability
+### NFR-07: Usability
 
 **Priority:** P0
 
@@ -671,7 +671,7 @@ is deferred.
 4. The interface shall clearly display order and payment statuses.
 5. The application shall provide understandable validation and error messages.
 
-### NFR-09: Interoperability
+### NFR-12: Interoperability
 
 **Priority:** P1
 
@@ -680,7 +680,7 @@ documented REST APIs.
 
 The MVP does not require external ERP integration.
 
-### NFR-10: Maintainability
+### NFR-13: Maintainability
 
 **Priority:** P0
 
@@ -691,7 +691,7 @@ The MVP does not require external ERP integration.
 5. Configuration changes shall not require application code changes where
    configuration is specified.
 
-### NFR-11: Observability
+### NFR-08: Observability
 
 **Priority:** P0 — Basic monitoring
 
@@ -707,7 +707,7 @@ The platform shall record:
 
 Advanced AI usage and external integration monitoring can be added in P1.
 
-### NFR-12: Accessibility
+### NFR-14: Accessibility
 
 **Priority:** P1
 
@@ -716,14 +716,14 @@ The interfaces shall follow appropriate web accessibility practices.
 The MVP should implement basic accessibility from the beginning, while a broader
 accessibility review can be completed after launch.
 
-### NFR-13: Backup and Recovery
+### NFR-09: Backup and Recovery
 
 **Priority:** P0
 
 The platform shall maintain database backup and recovery procedures appropriate
 for production data.
 
-### NFR-14: Financial Accuracy and Auditability
+### NFR-03: Financial Accuracy and Auditability
 
 **Priority:** P0 — Mandatory
 
